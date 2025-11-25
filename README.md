@@ -11,6 +11,10 @@ A modern, responsive web application built with Next.js 14, TypeScript, and Tail
 3. **JSON Formatter** - Format, minify, and validate JSON data
 4. **Random Number Generator** - Generate random numbers within specified ranges
 5. **Color Palette Generator** - Create beautiful color palettes from hex colors
+6. **Image to Base64 Converter** - Convert images to Base64 encoded strings
+7. **Loan/EMI Calculator** - Calculate monthly EMI and interest details
+8. **Word Counter** - Count words, characters, sentences, and paragraphs
+9. **QR Code Generator** - Generate downloadable QR codes from text or URLs
 
 ### Key Highlights
 

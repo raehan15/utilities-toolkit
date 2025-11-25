@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 export default function ImageToBase64() {
   const [base64Result, setBase64Result] = useState("");
@@ -151,10 +152,13 @@ export default function ImageToBase64() {
 
             {imagePreview && (
               <div>
-                <img
+                <Image
                   src={imagePreview}
                   alt="Preview"
-                  className="max-w-full max-h-64 mx-auto mb-4 rounded-lg shadow-md"
+                  width={300}
+                  height={200}
+                  className="max-w-full max-h-64 mx-auto mb-4 rounded-lg shadow-md object-contain"
+                  unoptimized
                 />
                 <div className="text-sm text-slate-600 mb-4">
                   <p>

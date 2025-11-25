@@ -12,80 +12,361 @@ export default function TextToHashtags() {
       return;
     }
 
-    // Extract keywords and create hashtags
-    const words = inputText
-      .toLowerCase()
-      .replace(/[^\w\s]/g, " ")
-      .split(/\s+/)
-      .filter((word) => word.length > 2)
-      .filter(
-        (word) =>
-          ![
-            "the",
-            "and",
-            "or",
-            "but",
-            "in",
-            "on",
-            "at",
-            "to",
-            "for",
-            "of",
-            "with",
-            "by",
-            "is",
-            "are",
-            "was",
-            "were",
-            "be",
-            "been",
-            "being",
-            "have",
-            "has",
-            "had",
-            "do",
-            "does",
-            "did",
-            "will",
-            "would",
-            "could",
-            "should",
-            "may",
-            "might",
-            "can",
-            "this",
-            "that",
-            "these",
-            "those",
-          ].includes(word)
-      );
+    const text = inputText.toLowerCase();
 
-    // Create hashtags from individual words
-    const wordHashtags = Array.from(new Set(words))
-      .slice(0, 8)
-      .map((word) => `#${word}`);
+    // 1. Extract meaningful keywords (not just individual words)
+    const keywords = extractKeywords(text);
 
-    // Create compound hashtags
-    const compoundHashtags = [];
-    for (let i = 0; i < Math.min(words.length - 1, 6); i++) {
-      compoundHashtags.push(`#${words[i]}${words[i + 1]}`);
-    }
+    // 2. Get contextual hashtags based on content analysis
+    const contextualHashtags = getContextualHashtags(text);
 
-    // Add trending and generic hashtags based on context
-    const contextualHashtags = getContextualHashtags(inputText.toLowerCase());
+    // 3. Generate strategic hashtags
+    const strategicHashtags = generateStrategicHashtags(keywords, text);
 
+    // 4. Get trending/popular hashtags for the topic
+    const trendingHashtags = getTrendingHashtags(text);
+
+    // 5. Create branded/unique hashtags
+    const brandedHashtags = createBrandedHashtags(keywords);
+
+    // Combine and prioritize hashtags
     const allHashtags = [
-      ...wordHashtags,
-      ...compoundHashtags,
-      ...contextualHashtags,
+      ...strategicHashtags.slice(0, 6), // Most important - strategic
+      ...contextualHashtags.slice(0, 5), // Contextual relevance
+      ...trendingHashtags.slice(0, 4), // Popular/trending
+      ...brandedHashtags.slice(0, 3), // Unique combinations
+      ...keywords.slice(0, 4).map((k) => `#${k.replace(/\s+/g, "")}`), // Clean keywords
     ];
-    const uniqueHashtags = Array.from(new Set(allHashtags)).slice(0, 20);
+
+    // Remove duplicates and limit to 25 hashtags
+    const uniqueHashtags = Array.from(new Set(allHashtags))
+      .filter((tag) => tag.length > 2 && tag.length < 30)
+      .slice(0, 25);
 
     setHashtags(uniqueHashtags);
   };
 
-  const getContextualHashtags = (text: string) => {
-    const contextMap = {
+  const extractKeywords = (text: string) => {
+    // Enhanced stopwords list
+    const stopwords = new Set([
+      "the",
+      "and",
+      "or",
+      "but",
+      "in",
+      "on",
+      "at",
+      "to",
+      "for",
+      "of",
+      "with",
+      "by",
+      "is",
+      "are",
+      "was",
+      "were",
+      "be",
+      "been",
+      "being",
+      "have",
+      "has",
+      "had",
+      "do",
+      "does",
+      "did",
+      "will",
+      "would",
+      "could",
+      "should",
+      "may",
+      "might",
+      "can",
+      "this",
+      "that",
+      "these",
+      "those",
+      "a",
+      "an",
+      "as",
+      "if",
+      "then",
+      "than",
+      "when",
+      "where",
+      "why",
+      "how",
+      "all",
+      "any",
+      "both",
+      "each",
+      "few",
+      "more",
+      "most",
+      "other",
+      "some",
+      "such",
+      "no",
+      "nor",
+      "not",
+      "only",
+      "own",
+      "same",
+      "so",
+      "very",
+      "just",
+      "now",
+      "get",
+      "got",
+      "make",
+    ]);
+
+    // Extract phrases and important words
+    const words = text
+      .replace(/[^\w\s]/g, " ")
+      .split(/\s+/)
+      .filter((word) => word.length > 2 && !stopwords.has(word));
+
+    // Find important phrases (2-3 word combinations)
+    const phrases = [];
+    for (let i = 0; i < words.length - 1; i++) {
+      const twoWord = `${words[i]} ${words[i + 1]}`;
+      if (isImportantPhrase(twoWord)) {
+        phrases.push(twoWord);
+      }
+
+      if (i < words.length - 2) {
+        const threeWord = `${words[i]} ${words[i + 1]} ${words[i + 2]}`;
+        if (isImportantPhrase(threeWord)) {
+          phrases.push(threeWord);
+        }
+      }
+    }
+
+    // Combine single words and phrases, prioritize by importance
+    const allKeywords = [...phrases, ...words];
+    return Array.from(new Set(allKeywords)).slice(0, 10);
+  };
+
+  const isImportantPhrase = (phrase: string) => {
+    // Check if phrase contains important keywords or patterns
+    const importantPatterns = [
+      /\w+(ing|ed|er|est|ly)\s+\w+/, // Action words + noun
+      /\w+\s+(tips|guide|tutorial|review|recipe|workout|style)/,
+      /\w+\s+(photography|design|art|music|fitness|travel|food)/,
+      /(best|top|amazing|incredible|perfect|ultimate|essential)\s+\w+/,
+      /\w+\s+(challenge|inspiration|motivation|goals|success)/,
+    ];
+
+    return importantPatterns.some((pattern) =>
+      pattern.test(phrase.toLowerCase())
+    );
+  };
+
+  const generateStrategicHashtags = (
+    keywords: string[],
+    text: string
+  ): string[] => {
+    const strategic: string[] = [];
+
+    // Create strategic combinations
+    keywords.forEach((keyword) => {
+      const cleanKeyword = keyword.replace(/\s+/g, "");
+
+      // Add base keyword
+      strategic.push(`#${cleanKeyword}`);
+
+      // Add strategic suffixes based on context
+      if (
+        text.includes("tip") ||
+        text.includes("advice") ||
+        text.includes("how")
+      ) {
+        strategic.push(`#${cleanKeyword}tips`);
+        strategic.push(`#${cleanKeyword}advice`);
+      }
+
+      if (
+        text.includes("love") ||
+        text.includes("passion") ||
+        text.includes("enjoy")
+      ) {
+        strategic.push(`#${cleanKeyword}love`);
+        strategic.push(`#${cleanKeyword}passion`);
+      }
+
+      if (
+        text.includes("daily") ||
+        text.includes("everyday") ||
+        text.includes("routine")
+      ) {
+        strategic.push(`#daily${cleanKeyword}`);
+        strategic.push(`#${cleanKeyword}daily`);
+      }
+
+      if (text.includes("inspiration") || text.includes("motivat")) {
+        strategic.push(`#${cleanKeyword}inspiration`);
+        strategic.push(`#${cleanKeyword}motivation`);
+      }
+    });
+
+    return strategic;
+  };
+
+  const getTrendingHashtags = (text: string): string[] => {
+    // Current trending hashtags by category
+    const trendingMap = {
+      "lifestyle|life|daily|routine": [
+        "#lifestyle",
+        "#dailyvibes",
+        "#lifehacks",
+        "#mindfulness",
+        "#selfcare",
+        "#positivevibes",
+        "#inspiration",
+        "#motivation",
+        "#goals2024",
+      ],
+      "food|cooking|recipe|delicious|eat": [
+        "#foodie",
+        "#foodporn",
+        "#yummy",
+        "#delicious",
+        "#homemade",
+        "#foodblogger",
+        "#instafood",
+        "#tasty",
+        "#cooking",
+        "#recipe",
+      ],
+      "fitness|workout|gym|health|exercise": [
+        "#fitness",
+        "#workout",
+        "#fitnessjourney",
+        "#healthylifestyle",
+        "#fitfam",
+        "#gymlife",
+        "#strength",
+        "#cardio",
+        "#wellness",
+        "#fitspo",
+      ],
+      "travel|vacation|adventure|explore": [
+        "#travel",
+        "#wanderlust",
+        "#vacation",
+        "#adventure",
+        "#explore",
+        "#travelgram",
+        "#instatravel",
+        "#backpacking",
+        "#roadtrip",
+        "#getaway",
+      ],
+      "business|work|entrepreneur|success": [
+        "#entrepreneur",
+        "#business",
+        "#success",
+        "#hustle",
+        "#mindset",
+        "#businessowner",
+        "#startup",
+        "#leadership",
+        "#productivity",
+        "#growth",
+      ],
+      "tech|technology|coding|software|digital": [
+        "#tech",
+        "#technology",
+        "#coding",
+        "#programming",
+        "#software",
+        "#innovation",
+        "#digital",
+        "#ai",
+        "#startup",
+        "#developer",
+      ],
+      "art|creative|design|photography": [
+        "#art",
+        "#creative",
+        "#design",
+        "#artist",
+        "#photography",
+        "#creativity",
+        "#artoftheday",
+        "#instaart",
+        "#artistic",
+        "#visual",
+      ],
+      "fashion|style|outfit|beauty": [
+        "#fashion",
+        "#style",
+        "#ootd",
+        "#fashionista",
+        "#beauty",
+        "#trendy",
+        "#styleinspo",
+        "#fashionblogger",
+        "#outfit",
+        "#chic",
+      ],
+      "education|learning|study|knowledge": [
+        "#education",
+        "#learning",
+        "#knowledge",
+        "#study",
+        "#growth",
+        "#skills",
+        "#development",
+        "#training",
+        "#wisdom",
+        "#learneveryday",
+      ],
+    };
+
+    const trending = [];
+    for (const [pattern, tags] of Object.entries(trendingMap)) {
+      if (new RegExp(pattern, "i").test(text)) {
+        trending.push(...tags.slice(0, 4));
+      }
+    }
+
+    // Add universal trending hashtags
+    trending.push("#viral", "#trending", "#discover", "#explore", "#community");
+
+    return trending;
+  };
+
+  const createBrandedHashtags = (keywords: string[]): string[] => {
+    const branded: string[] = [];
+    const prefixes = ["my", "daily", "love", "best", "amazing", "perfect"];
+    const suffixes = [
+      "life",
+      "vibes",
+      "goals",
+      "journey",
+      "experience",
+      "story",
+    ];
+
+    keywords.slice(0, 3).forEach((keyword) => {
+      const cleanKeyword = keyword.replace(/\s+/g, "");
+
+      // Add some branded combinations
+      prefixes.slice(0, 2).forEach((prefix) => {
+        branded.push(`#${prefix}${cleanKeyword}`);
+      });
+
+      suffixes.slice(0, 2).forEach((suffix) => {
+        branded.push(`#${cleanKeyword}${suffix}`);
+      });
+    });
+
+    return branded;
+  };
+
+  const getContextualHashtags = (text: string): string[] => {
+    const contextMap: Record<string, string[]> = {
       "food|cooking|recipe|kitchen|chef": [
         "#foodie",
         "#cooking",
@@ -168,7 +449,7 @@ export default function TextToHashtags() {
       ],
     };
 
-    const matched = [];
+    const matched: string[] = [];
     for (const [pattern, tags] of Object.entries(contextMap)) {
       if (new RegExp(pattern, "i").test(text)) {
         matched.push(...tags.slice(0, 3));

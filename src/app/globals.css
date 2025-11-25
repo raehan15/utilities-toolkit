@@ -3,25 +3,130 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #1e293b;
-  --card-background: #ffffff;
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --secondary: #64748b;
-  --accent: #f59e0b;
+  /* Color palette - no purple anywhere */
+  --bg: #ffffff;
+  --muted: #6b7280; /* slate-500 */
+  --card: #f8fafc; /* very light */
+  --border: #e6eef3;
+  --primary: #0ea5a4; /* teal-500 */
+  --primary-600: #09989a;
+  --accent: #06b6d4; /* cyan */
+  --success: #16a34a;
+  --danger: #ef4444;
+  --foreground: #0f172a; /* slate-900 */
+  --background: #f7fbfc; /* subtle off-white */
 }
 
+html,
 body {
+  margin: 0;
+  padding: 0;
   color: var(--foreground);
   background: var(--background);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     sans-serif;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-html {
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+/* Neutral utility classes used by components */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: white;
+  color: var(--foreground);
+  outline: none;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+}
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tool selector specific styles */
+.tool-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.tool-card {
+  padding: 1.25rem;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--card));
+  border: 1px solid rgba(6, 182, 212, 0.08);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  cursor: pointer;
+}
+.tool-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.08);
+}
+.tool-card .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 164, 0.12),
+    rgba(6, 182, 212, 0.08)
+  );
+  color: var(--primary-600);
+}
+.tool-card .meta {
+  flex: 1;
+}
+.tool-card .meta .title {
+  font-weight: 700;
+  color: var(--foreground);
+}
+.tool-card .meta .desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Make sure dropdowns overlay content */
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+/* Utilities */
+.hidden {
+  display: none;
 }
 
 /* Fix input text visibility */
@@ -43,19 +148,19 @@ textarea::placeholder {
 /* Custom component styles */
 @layer components {
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl;
+    @apply bg-white rounded-xl shadow-lg border border-slate-100 transition-all duration-300 hover:shadow-xl;
   }
 
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+    @apply bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
   }
 
   .btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200;
+    @apply bg-slate-600 hover:bg-slate-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-gray-900 placeholder-gray-500 bg-white;
+    @apply w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 text-slate-900 placeholder-slate-500 bg-white;
   }
 }
 
@@ -65,10 +170,10 @@ textarea::placeholder {
   }
 
   .gradient-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0ea5a4 0%, #06b6d4 100%);
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent;
   }
 }

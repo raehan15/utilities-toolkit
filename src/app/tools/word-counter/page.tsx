@@ -112,9 +112,9 @@ Estimated reading time: ${stats.readingTime} minute${
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-indigo-100">
+      <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">
             Word & Character Counter
           </h1>
           <p className="text-slate-600 text-lg">
@@ -133,7 +133,7 @@ Estimated reading time: ${stats.readingTime} minute${
               <div className="flex gap-2">
                 <button
                   onClick={loadSampleText}
-                  className="text-sm text-indigo-600 hover:text-indigo-700 font-medium px-3 py-1 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+                  className="text-sm text-teal-600 hover:text-teal-700 font-medium px-3 py-1 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
                 >
                   Load Sample
                 </button>
@@ -150,7 +150,7 @@ Estimated reading time: ${stats.readingTime} minute${
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Start typing or paste your text here to see live statistics..."
-              className="w-full h-96 p-4 border-2 border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-slate-900 placeholder-slate-500 bg-white resize-none text-base leading-relaxed"
+              className="w-full h-96 p-4 border-2 border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 text-slate-900 placeholder-slate-500 bg-white resize-none text-base leading-relaxed"
             />
 
             <div className="flex justify-between items-center text-sm text-slate-600">
@@ -170,7 +170,7 @@ Estimated reading time: ${stats.readingTime} minute${
               {stats.words > 0 && (
                 <button
                   onClick={copyStats}
-                  className="text-sm text-indigo-600 hover:text-indigo-700 font-medium px-3 py-1 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+                  className="text-sm text-teal-600 hover:text-teal-700 font-medium px-3 py-1 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
                 >
                   Copy Stats
                 </button>
@@ -201,9 +201,9 @@ Estimated reading time: ${stats.readingTime} minute${
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-xl border border-purple-100">
+              <div className="bg-gradient-to-r from-cyan-50 to-sky-50 p-4 rounded-xl border border-cyan-100">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-1">
+                  <div className="text-3xl font-bold text-cyan-600 mb-1">
                     {stats.words.toLocaleString()}
                   </div>
                   <div className="text-sm font-medium text-slate-700">
@@ -256,7 +256,7 @@ Estimated reading time: ${stats.readingTime} minute${
                   </div>
                   <div className="flex justify-between border-t border-slate-200 pt-3">
                     <span className="text-slate-600">Reading time:</span>
-                    <span className="font-bold text-indigo-600">
+                    <span className="font-bold text-teal-600">
                       {stats.readingTime} min
                       {stats.readingTime !== 1 ? "s" : ""}
                     </span>
@@ -267,7 +267,7 @@ Estimated reading time: ${stats.readingTime} minute${
           </div>
         </div>
 
-        <div className="mt-8 bg-indigo-50 rounded-xl p-6 border border-indigo-100">
+        <div className="mt-8 bg-teal-50 rounded-xl p-6 border border-teal-100">
           <h3 className="text-lg font-bold text-slate-800 mb-3">
             📊 Usage Tips
           </h3>

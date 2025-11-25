@@ -20,35 +20,54 @@ export default function QRCodeGenerator() {
     setError("");
 
     try {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        await QRCode.toCanvas(canvas, input, {
-          width: 300,
-          margin: 2,
-          color: {
-            dark: "#000000",
-            light: "#ffffff",
-          },
-        });
+      console.log("Generating QR code for:", input);
 
-        // Also generate data URL for download
-        const dataUrl = await QRCode.toDataURL(input, {
-          width: 300,
-          margin: 2,
-          color: {
-            dark: "#000000",
-            light: "#ffffff",
-          },
-        });
-        setQrCodeUrl(dataUrl);
+      // First generate data URL to test if QRCode library works
+      const dataUrl = await QRCode.toDataURL(input, {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: "#000000",
+          light: "#ffffff",
+        },
+      });
+
+      console.log(
+        "Data URL generated successfully:",
+        dataUrl.substring(0, 50) + "..."
+      );
+      setQrCodeUrl(dataUrl);
+
+      // Then render to canvas
+      const canvas = canvasRef.current;
+      if (!canvas) {
+        console.warn(
+          "Canvas not found, but data URL was generated successfully"
+        );
+        return;
       }
+
+      await QRCode.toCanvas(canvas, input, {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: "#000000",
+          light: "#ffffff",
+        },
+      });
+
+      console.log("Canvas QR code generated successfully");
     } catch (err) {
-      setError("Failed to generate QR code. Please try again.");
+      console.error("QR Code generation error:", err);
+      setError(
+        `Failed to generate QR code: ${
+          err instanceof Error ? err.message : "Unknown error"
+        }`
+      );
     } finally {
       setIsGenerating(false);
     }
   };
-
   const downloadQRCode = () => {
     if (!qrCodeUrl) return;
 
@@ -64,19 +83,43 @@ export default function QRCodeGenerator() {
     if (!qrCodeUrl) return;
 
     try {
-      const response = await fetch(qrCodeUrl);
-      const blob = await response.blob();
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          "image/png": blob,
-        }),
-      ]);
-      alert("QR code copied to clipboard!");
+      // Try the modern clipboard API first
+      if (navigator.clipboard && navigator.clipboard.write) {
+        const response = await fetch(qrCodeUrl);
+        const blob = await response.blob();
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            "image/png": blob,
+          }),
+        ]);
+        alert("QR code copied to clipboard!");
+      } else {
+        // Fallback - copy the data URL as text
+        await navigator.clipboard.writeText(qrCodeUrl);
+        alert("QR code data URL copied to clipboard!");
+      }
     } catch (err) {
-      alert("Failed to copy QR code to clipboard");
+      console.error("Copy failed:", err);
+      // Final fallback - show the data URL for manual copying
+      const newWindow = window.open("", "_blank");
+      if (newWindow) {
+        newWindow.document.write(`
+          <html>
+            <head><title>QR Code Data URL</title></head>
+            <body>
+              <h3>QR Code Data URL (select and copy):</h3>
+              <textarea style="width:100%;height:100px;">${qrCodeUrl}</textarea>
+              <br><br>
+              <img src="${qrCodeUrl}" style="max-width:300px;" alt="QR Code" />
+            </body>
+          </html>
+        `);
+        newWindow.document.close();
+      } else {
+        alert("Please enable popups or try the download option instead");
+      }
     }
   };
-
   const presets = [
     { label: "Website URL", value: "https://example.com" },
     { label: "Wi-Fi Network", value: "WIFI:T:WPA;S:NetworkName;P:password;;" },
@@ -185,15 +228,18 @@ export default function QRCodeGenerator() {
           </h2>
 
           <div className="space-y-6">
+            {/* Canvas for QR Code generation - always present but hidden until needed */}
+            <div className="text-center">
+              <canvas
+                ref={canvasRef}
+                className={`mx-auto border-2 border-gray-200 rounded-lg shadow-sm ${
+                  qrCodeUrl ? "block" : "hidden"
+                }`}
+              />
+            </div>
+
             {qrCodeUrl ? (
               <>
-                <div className="text-center">
-                  <canvas
-                    ref={canvasRef}
-                    className="mx-auto border-2 border-gray-200 rounded-lg shadow-sm"
-                  />
-                </div>
-
                 <div className="grid grid-cols-2 gap-4">
                   <button
                     onClick={downloadQRCode}
