@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -29,11 +30,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-slate-50 text-slate-900`}>
         <div className="min-h-screen flex flex-col bg-slate-50">
-          <Navbar />
           <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
           <Footer />
         </div>
+        <Analytics />
       </body>
+    </html>y>
     </html>
   );
 }
