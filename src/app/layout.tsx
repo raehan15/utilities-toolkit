@@ -37,6 +37,12 @@ export default function RootLayout({
           <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
           <Footer />
         </div>
+        <script
+          src="https://quge5.com/88/tag.min.js"
+          data-zone="192423"
+          async
+          data-cfasync="false"
+        ></script>
         <Analytics />
       </body>
     </html>
