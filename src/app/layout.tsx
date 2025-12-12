@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "All-in-One Utilities" }],
   other: {
-    monetag: "49c694da36ef603e256ac31f90c31437",
+    monetag: "e71ae7e1ac16e96e015d183aa04e16f8",
   },
 };
 
