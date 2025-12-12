@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "YouTube title generator",
   ],
   authors: [{ name: "All-in-One Utilities" }],
+  other: {
+    monetag: "49c694da36ef603e256ac31f90c31437",
+  },
 };
 
 export default function RootLayout({
