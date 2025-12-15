@@ -19,9 +19,6 @@ export const metadata: Metadata = {
     "YouTube title generator",
   ],
   authors: [{ name: "All-in-One Utilities" }],
-  other: {
-    monetag: "e71ae7e1ac16e96e015d183aa04e16f8",
-  },
 };
 
 export default function RootLayout({
@@ -37,12 +34,6 @@ export default function RootLayout({
           <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
           <Footer />
         </div>
-        <script
-          src="https://quge5.com/88/tag.min.js"
-          data-zone="192423"
-          async
-          data-cfasync="false"
-        ></script>
         <Analytics />
       </body>
     </html>
