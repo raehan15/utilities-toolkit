@@ -1,0 +1,8 @@
+# robots.txt for Tool Kit - Utilities
+# https://www.appguiding.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.appguiding.com/sitemap.xml

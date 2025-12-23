@@ -1,89 +1,120 @@
 import ToolSelector from "@/components/ToolSelector";
 
-const tools = [
+const toolCategories = [
   {
-    name: "BMI Calculator",
-    href: "/tools/bmi-calculator",
-    description: "Body Mass Index and health category",
-    icon: "🏥",
+    name: "Generators",
+    tools: [
+      {
+        name: "YouTube Title Generator",
+        href: "/tools/youtube-title-generator",
+        description: "Create attention-grabbing titles",
+        icon: "🎥",
+      },
+      {
+        name: "Random Number Generator",
+        href: "/tools/random-number-generator",
+        description: "Random numbers and presets",
+        icon: "🎲",
+      },
+      {
+        name: "Color Palette Generator",
+        href: "/tools/color-palette-generator",
+        description: "Create palettes from hex colors",
+        icon: "🎨",
+      },
+      {
+        name: "QR Code Generator",
+        href: "/tools/qr-code-generator",
+        description: "Create downloadable QR codes",
+        icon: "📱",
+      },
+    ],
   },
   {
-    name: "YouTube Title Generator",
-    href: "/tools/youtube-title-generator",
-    description: "Create attention-grabbing titles",
-    icon: "🎥",
+    name: "Converters",
+    tools: [
+      {
+        name: "Image to Base64",
+        href: "/tools/image-to-base64",
+        description: "Convert images to Base64 strings",
+        icon: "🖼️",
+      },
+      {
+        name: "PDF Converter",
+        href: "/tools/pdf-converter",
+        description: "Export text to PDF locally",
+        icon: "📄",
+      },
+      {
+        name: "Image Converter",
+        href: "/tools/image-converter",
+        description: "PNG/JPEG/WebP conversion",
+        icon: "🔄",
+      },
+      {
+        name: "Unit Converter",
+        href: "/tools/unit-converter",
+        description: "Length, weight, temp and more",
+        icon: "📏",
+      },
+      {
+        name: "Base64 Converter",
+        href: "/tools/base64-converter",
+        description: "Encode/decode Base64 text",
+        icon: "🔐",
+      },
+    ],
   },
   {
-    name: "JSON Formatter",
-    href: "/tools/json-formatter",
-    description: "Format, minify and validate JSON",
-    icon: "📝",
+    name: "Calculators",
+    tools: [
+      {
+        name: "BMI Calculator",
+        href: "/tools/bmi-calculator",
+        description: "Body Mass Index and health category",
+        icon: "🏥",
+      },
+      {
+        name: "Loan / EMI Calculator",
+        href: "/tools/loan-emi-calculator",
+        description: "EMI, interest breakdown",
+        icon: "💰",
+      },
+    ],
   },
   {
-    name: "Random Number Generator",
-    href: "/tools/random-number-generator",
-    description: "Random numbers and presets",
-    icon: "🎲",
+    name: "Text & Data Tools",
+    tools: [
+      {
+        name: "JSON Formatter",
+        href: "/tools/json-formatter",
+        description: "Format, minify and validate JSON",
+        icon: "📝",
+      },
+      {
+        name: "Word Counter",
+        href: "/tools/word-counter",
+        description: "Live word & character counts",
+        icon: "📊",
+      },
+      {
+        name: "Text to Hashtags",
+        href: "/tools/text-to-hashtags",
+        description: "Generate hashtags from text",
+        icon: "#️⃣",
+      },
+    ],
   },
   {
-    name: "Color Palette Generator",
-    href: "/tools/color-palette-generator",
-    description: "Create palettes from hex colors",
-    icon: "🎨",
-  },
-  {
-    name: "Image to Base64",
-    href: "/tools/image-to-base64",
-    description: "Convert images to Base64 strings",
-    icon: "🖼️",
-  },
-  {
-    name: "PDF Converter",
-    href: "/tools/pdf-converter",
-    description: "Export text to PDF locally",
-    icon: "📄",
-  },
-  {
-    name: "Image Converter",
-    href: "/tools/image-converter",
-    description: "PNG/JPEG/WebP conversion",
-    icon: "🔄",
-  },
-  {
-    name: "Unit Converter",
-    href: "/tools/unit-converter",
-    description: "Length, weight, temp and more",
-    icon: "📏",
-  },
-  {
-    name: "QR Code Generator",
-    href: "/tools/qr-code-generator",
-    description: "Create downloadable QR codes",
-    icon: "📱",
-  },
-  {
-    name: "Loan / EMI Calculator",
-    href: "/tools/loan-emi-calculator",
-    description: "EMI, interest breakdown",
-    icon: "💰",
-  },
-  {
-    name: "Word Counter",
-    href: "/tools/word-counter",
-    description: "Live word & character counts",
-    icon: "📊",
-  },
-  {
-    name: "Base64 Converter",
-    href: "/tools/base64-converter",
-    description: "Encode/decode Base64 text",
-    icon: "🔐",
-  },
-  {
-    name: "YouTube Guide",
-    href: "/tools/youtube-downloader",
-    description: "Guide: downloader tools & methods",
-    icon: "🎵",
+    name: "Other",
+    tools: [
+      {
+        name: "YouTube Guide",
+        href: "/tools/youtube-downloader",
+        description: "Guide: downloader tools & methods",
+        icon: "🎵",
+      },
+    ],
   },
 ];
 
@@ -110,10 +141,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="">
-          {/* ToolSelector is a client component that renders an interactive grid */}
-          <ToolSelector tools={tools} />
-        </div>
+        <ToolSelector categories={toolCategories} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -141,3 +169,4 @@ export default function Home() {
     </div>
   );
 }
+
