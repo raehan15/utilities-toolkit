@@ -73,6 +73,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .tool-selector {
+    justify-content: flex-start;
+  }
 }
 
 .tool-card {
