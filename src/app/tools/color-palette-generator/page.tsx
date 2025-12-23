@@ -8,7 +8,7 @@ interface Color {
 }
 
 export default function ColorPaletteGenerator() {
-  const [baseColor, setBaseColor] = useState("#3B82F6");
+  const [baseColor, setBaseColor] = useState("#0EA5A4");
   const [palette, setPalette] = useState<Color[]>([]);
 
   const hexToHsl = (hex: string) => {
@@ -185,8 +185,8 @@ export default function ColorPaletteGenerator() {
                   id="baseColor"
                   value={baseColor}
                   onChange={(e) => setBaseColor(e.target.value)}
-                  placeholder="#3B82F6"
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"
+                  placeholder="#0EA5A4"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent font-mono"
                 />
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function ColorPaletteGenerator() {
               </button>
               <button
                 onClick={generatePalette}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
               >
                 Generate Palette
               </button>
@@ -214,7 +214,7 @@ export default function ColorPaletteGenerator() {
                 </h3>
                 <button
                   onClick={copyPalette}
-                  className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                  className="text-teal-600 hover:text-teal-700 font-medium text-sm"
                 >
                   Copy All Colors
                 </button>
@@ -236,7 +236,7 @@ export default function ColorPaletteGenerator() {
                         {color.name}
                       </p>
                       <p
-                        className="text-xs font-mono text-gray-600 cursor-pointer hover:text-blue-600"
+                        className="text-xs font-mono text-gray-600 cursor-pointer hover:text-teal-600"
                         onClick={() => copyColor(color.hex)}
                       >
                         {color.hex}
@@ -261,7 +261,7 @@ export default function ColorPaletteGenerator() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-green-50 rounded-lg p-6">
+          <div className="bg-teal-50 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">
               🎨 Color Theory
             </h3>
@@ -281,7 +281,7 @@ export default function ColorPaletteGenerator() {
             </ul>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-6">
+          <div className="bg-cyan-50 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">
               💡 Usage Tips
             </h3>

@@ -102,7 +102,7 @@ export default function RandomNumberGenerator() {
                 value={min}
                 onChange={(e) => setMin(e.target.value)}
                 placeholder="Enter minimum number"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -118,7 +118,7 @@ export default function RandomNumberGenerator() {
                 value={max}
                 onChange={(e) => setMax(e.target.value)}
                 placeholder="Enter maximum number"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -163,13 +163,13 @@ export default function RandomNumberGenerator() {
           <div className="flex gap-4">
             <button
               onClick={generateNumber}
-              className="flex-1 bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+              className="flex-1 bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-medium"
             >
               Generate Random Number
             </button>
             <button
               onClick={generateMultiple}
-              className="bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+              className="bg-cyan-600 text-white py-3 px-6 rounded-lg hover:bg-cyan-700 transition-colors font-medium"
             >
               Generate 5 Numbers
             </button>
@@ -182,17 +182,17 @@ export default function RandomNumberGenerator() {
           </div>
 
           {result !== null && (
-            <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-8 text-center">
+            <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg p-8 text-center">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Generated Number
               </h3>
               <div className="flex items-center justify-center gap-4">
-                <div className="text-5xl font-bold text-purple-600">
+                <div className="text-5xl font-bold text-teal-600">
                   {result}
                 </div>
                 <button
                   onClick={copyResult}
-                  className="text-purple-600 hover:text-purple-700 font-medium"
+                  className="text-teal-600 hover:text-teal-700 font-medium"
                 >
                   Copy
                 </button>
@@ -219,7 +219,7 @@ export default function RandomNumberGenerator() {
           )}
         </div>
 
-        <div className="mt-8 bg-purple-50 rounded-lg p-6">
+        <div className="mt-8 bg-teal-50 rounded-lg p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">
             🎯 Use Cases
           </h3>

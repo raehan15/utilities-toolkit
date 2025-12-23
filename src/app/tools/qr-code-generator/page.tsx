@@ -171,7 +171,7 @@ export default function QRCodeGenerator() {
                   <button
                     key={preset.label}
                     onClick={() => setInput(preset.value)}
-                    className="p-3 text-sm bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors text-left border border-blue-200"
+                    className="p-3 text-sm bg-teal-50 hover:bg-teal-100 text-teal-700 rounded-lg transition-colors text-left border border-teal-200"
                   >
                     {preset.label}
                   </button>
@@ -262,7 +262,7 @@ export default function QRCodeGenerator() {
                   </button>
                   <button
                     onClick={copyToClipboard}
-                    className="btn-secondary flex items-center justify-center space-x-2"
+                    className="flex items-center justify-center space-x-2 py-3 px-6 border-2 border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50 transition-colors font-medium"
                   >
                     <svg
                       className="w-5 h-5"
@@ -281,8 +281,8 @@ export default function QRCodeGenerator() {
                   </button>
                 </div>
 
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-green-700 text-sm">
+                <div className="p-4 bg-teal-50 border border-teal-200 rounded-lg">
+                  <p className="text-teal-700 text-sm">
                     <strong>QR Code generated successfully!</strong> You can
                     download it as a PNG image or copy it to your clipboard.
                   </p>
