@@ -178,7 +178,7 @@ Action Items:
                   "Generate PDF"
                 )}
               </button>
-              <button onClick={reset} className="btn-secondary">
+              <button onClick={reset} className="py-3 px-6 border-2 border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50 transition-colors font-medium">
                 Reset
               </button>
             </div>
@@ -211,7 +211,7 @@ Action Items:
                     setTitle(sample.title);
                     setText(sample.content);
                   }}
-                  className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                  className="text-teal-600 hover:text-teal-700 text-sm font-medium"
                 >
                   Use This Template
                 </button>

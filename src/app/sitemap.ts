@@ -16,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "image-converter",
     "unit-converter",
     "qr-code-generator",
-    "loan-emi-calculator",
     "word-counter",
     "base64-converter",
     "youtube-downloader",

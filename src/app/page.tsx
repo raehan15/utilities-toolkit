@@ -74,12 +74,6 @@ const toolCategories = [
         description: "Body Mass Index and health category",
         icon: "🏥",
       },
-      {
-        name: "Loan / EMI Calculator",
-        href: "/tools/loan-emi-calculator",
-        description: "EMI, interest breakdown",
-        icon: "💰",
-      },
     ],
   },
   {

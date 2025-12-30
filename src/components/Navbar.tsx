@@ -27,7 +27,6 @@ const toolCategories = [
     name: "Calculators",
     tools: [
       { name: "BMI Calculator", href: "/tools/bmi-calculator" },
-      { name: "Loan / EMI Calculator", href: "/tools/loan-emi-calculator" },
     ],
   },
   {

@@ -221,7 +221,7 @@ export default function ImageConverter() {
               )}
             </button>
 
-            <button onClick={reset} className="btn-secondary w-full">
+            <button onClick={reset} className="w-full py-3 px-6 border-2 border-teal-600 text-teal-600 rounded-lg hover:bg-teal-50 transition-colors font-medium">
               Reset
             </button>
 
