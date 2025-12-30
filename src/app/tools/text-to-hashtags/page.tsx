@@ -489,9 +489,9 @@ export default function TextToHashtags() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-purple-100">
+      <div className="bg-white rounded-2xl shadow-xl p-8 border border-teal-100">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">
             Text to Hashtags Generator
           </h1>
           <p className="text-slate-600 text-lg">
@@ -513,14 +513,14 @@ export default function TextToHashtags() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Enter any text, topic, or description (e.g., 'Delicious homemade pizza recipe with fresh ingredients')"
-              className="w-full h-32 px-4 py-4 border-2 border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 text-slate-900 placeholder-slate-500 bg-white resize-none"
+              className="w-full h-32 px-4 py-4 border-2 border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 text-slate-900 placeholder-slate-500 bg-white resize-none"
             />
           </div>
 
           <div className="flex gap-4">
             <button
               onClick={generateHashtags}
-              className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-8 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-200 font-bold text-lg shadow-lg hover:shadow-xl"
+              className="flex-1 bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 px-8 rounded-xl hover:from-teal-700 hover:to-cyan-700 transition-all duration-200 font-bold text-lg shadow-lg hover:shadow-xl"
             >
               Generate Hashtags
             </button>
@@ -533,14 +533,14 @@ export default function TextToHashtags() {
           </div>
 
           {hashtags.length > 0 && (
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-100">
+            <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-100">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold text-slate-800">
                   Generated Hashtags ({hashtags.length})
                 </h3>
                 <button
                   onClick={copyAllHashtags}
-                  className="text-purple-600 hover:text-purple-700 font-medium bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
+                  className="text-teal-600 hover:text-teal-700 font-medium bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
                 >
                   Copy All
                 </button>
@@ -551,7 +551,7 @@ export default function TextToHashtags() {
                   <button
                     key={index}
                     onClick={() => copyHashtag(hashtag)}
-                    className="bg-white text-purple-700 px-3 py-2 rounded-lg border border-purple-200 hover:bg-purple-50 hover:border-purple-300 transition-all duration-200 font-medium text-sm shadow-sm hover:shadow-md"
+                    className="bg-white text-teal-700 px-3 py-2 rounded-lg border border-teal-200 hover:bg-teal-50 hover:border-teal-300 transition-all duration-200 font-medium text-sm shadow-sm hover:shadow-md"
                   >
                     {hashtag}
                   </button>
@@ -566,7 +566,7 @@ export default function TextToHashtags() {
           )}
         </div>
 
-        <div className="mt-8 bg-purple-50 rounded-xl p-6 border border-purple-100">
+        <div className="mt-8 bg-teal-50 rounded-xl p-6 border border-teal-100">
           <h3 className="text-lg font-bold text-slate-800 mb-3">
             #️⃣ Hashtag Tips
           </h3>
