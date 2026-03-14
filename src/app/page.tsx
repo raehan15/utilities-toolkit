@@ -97,6 +97,59 @@ const toolCategories = [
         description: "Generate hashtags from text",
         icon: "#️⃣",
       },
+      {
+        name: "Markdown Previewer",
+        href: "/tools/markdown-previewer",
+        description: "Live markdown editor & preview",
+        icon: "📋",
+      },
+      {
+        name: "Lorem Ipsum Generator",
+        href: "/tools/lorem-ipsum-generator",
+        description: "Generate placeholder text",
+        icon: "📜",
+      },
+      {
+        name: "Text Case Converter",
+        href: "/tools/text-case-converter",
+        description: "Convert text between cases",
+        icon: "🔤",
+      },
+      {
+        name: "Slug Generator",
+        href: "/tools/slug-generator",
+        description: "Create URL-friendly slugs",
+        icon: "🔗",
+      },
+    ],
+  },
+  {
+    name: "Developer Tools",
+    tools: [
+      {
+        name: "UUID Generator",
+        href: "/tools/uuid-generator",
+        description: "Generate random UUIDs (v4)",
+        icon: "🔑",
+      },
+      {
+        name: "Timestamp Converter",
+        href: "/tools/timestamp-converter",
+        description: "Unix to date conversion",
+        icon: "⏱️",
+      },
+      {
+        name: "Regex Tester",
+        href: "/tools/regex-tester",
+        description: "Test regular expressions",
+        icon: "🔍",
+      },
+      {
+        name: "Code Minifier",
+        href: "/tools/code-minifier",
+        description: "Minify CSS & JavaScript",
+        icon: "📦",
+      },
     ],
   },
   {

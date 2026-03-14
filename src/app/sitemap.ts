@@ -20,6 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "base64-converter",
     "youtube-downloader",
     "text-to-hashtags",
+    "markdown-previewer",
+    "lorem-ipsum-generator",
+    "text-case-converter",
+    "slug-generator",
+    "uuid-generator",
+    "timestamp-converter",
+    "regex-tester",
+    "code-minifier",
   ];
 
   const toolRoutes = tools.map((tool) => ({

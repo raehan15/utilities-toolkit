@@ -35,6 +35,19 @@ const toolCategories = [
       { name: "JSON Formatter", href: "/tools/json-formatter" },
       { name: "Word Counter", href: "/tools/word-counter" },
       { name: "Text to Hashtags", href: "/tools/text-to-hashtags" },
+      { name: "Markdown Previewer", href: "/tools/markdown-previewer" },
+      { name: "Lorem Ipsum Generator", href: "/tools/lorem-ipsum-generator" },
+      { name: "Text Case Converter", href: "/tools/text-case-converter" },
+      { name: "Slug Generator", href: "/tools/slug-generator" },
+    ],
+  },
+  {
+    name: "Developer",
+    tools: [
+      { name: "UUID Generator", href: "/tools/uuid-generator" },
+      { name: "Timestamp Converter", href: "/tools/timestamp-converter" },
+      { name: "Regex Tester", href: "/tools/regex-tester" },
+      { name: "Code Minifier", href: "/tools/code-minifier" },
     ],
   },
   {
